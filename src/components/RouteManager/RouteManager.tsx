@@ -24,7 +24,7 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
   public state = {
 
     apiParams: {
-      key: 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg',
+      key: 'AIzaSyDSnQhXn5WfyBi68hCgx5qA4pmApKkN8Jc',
       libs: 'geometry,drawing,places',
       version: '3.exp',
     },
@@ -63,7 +63,7 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
             defaultZoom={ 15 }
             loadingElement={ <div style={{ height: '100%' }} /> }
             containerElement={
-              <div style={{ width: '100%', height: '50%' }} />
+              <div className="route-manager__map__wrapper"/>
             }
             mapElement={ <div style={{ height: '100%' }} /> }
             mountMap={ this.mapRef }

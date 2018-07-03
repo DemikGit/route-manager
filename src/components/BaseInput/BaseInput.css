@@ -1,7 +1,8 @@
 .base-input__container {
-
+  background-color: inherit;
 }
 
 .base-input__input {
-
+  width: 100%;
+  background-color: inherit;
 }

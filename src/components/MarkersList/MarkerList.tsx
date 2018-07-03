@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import { IMarker } from '../../classes/RMRoute';
 
+import { MarkerWrapper } from '../MarkerWrapper/MarkerWrapper';
 import './MarkerList.css';
 
 
@@ -18,9 +19,9 @@ export class MarkerList extends Component<IMarkerListProps, object> {
             return (
               <div
                 key={ index.toString() }
-                className="marker-list__field"
+                className="marker-list__marker"
               >
-                { marker.name }
+                <MarkerWrapper name={ marker.name } />
               </div>
             );
           })

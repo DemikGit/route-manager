@@ -4,13 +4,21 @@ import './MarkerWrapper.css'
 
 
 export interface IMarkerWrapperProps {
-  text: string,
+  name: string,
 }
 
 export class MarkerWrapper extends Component<IMarkerWrapperProps, object> {
   public render() {
+    const { name } = this.props;
     return (
-      <div className="marker-wrapper__container"/>
+      <div className="marker-wrapper__container">
+        <div
+          title={ name }
+          className="marker-wrapper__name"
+        >
+          { name }
+        </div>
+      </div>
     );
   }
 }

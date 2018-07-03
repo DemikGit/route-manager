@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { IMarker } from '../RouteManager/RouteManager';
+import { IMarker } from '../../classes/RMRoute';
 
 import './MarkerList.css';
 

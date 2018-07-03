@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { BaseInput } from '../BaseInput/BaseInput';
 import './RouteManager.css'
 
-import { GoogleMap, Marker } from "react-google-maps"
+import { GoogleMap, Marker, Polyline } from "react-google-maps"
 import { MapPreview } from '../MapPreview/MapPreview';
 import { MarkerList } from '../MarkersList/MarkerList';
 
@@ -91,6 +91,9 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
             {
               this.renderMarkers()
             }
+            {
+              this.renderPolyline()
+            }
           </MapPreview>
         </div>
       </div>
@@ -118,10 +121,20 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
     return markers;
   }
 
+  private renderPolyline = () => {
+    const path: google.maps.LatLngLiteral[] = [];
+
+    this.state.markers.forEach((marker) => {
+      path.push(marker.position);
+    })
+
+    return <Polyline path={ path } />;
+  }
+
   private onAddPoint = () => {
     if (this.mapRef.current) {
       const { lat: centerLat, lng: centerLng } = this.mapRef.current.getCenter();
-      // tslint:disable-next-line:no-console
+
       this.setState((state: IRouteManagerState) => {
         const newMarkers: IMarker[] = state.markers;
 
@@ -144,8 +157,18 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
   }
 
   private onDrag = (event: google.maps.MouseEvent, index: number): void => {
-    // tslint:disable-next-line:no-console
-    console.log(event.latLng, index)
+    const { lat, lng } = event.latLng;
+
+    this.setState((state: IRouteManagerState) => {
+      const newMarkers: IMarker[] = state.markers;
+
+      newMarkers[index].position = { lat: lat() , lng: lng() };
+
+      return {
+        markers: newMarkers,
+      };
+    });
+
   }
 
 }

@@ -13,7 +13,18 @@ export class MarkerList extends Component<IMarkerListProps, object> {
   public render() {
     return (
       <div className="marker-list__container">
-        { this.props.routeMarkers.map(( _ , index) => index ) }
+        {
+          this.props.routeMarkers.map(( _ , index ) => {
+            return (
+              <div
+                key={ index.toString() }
+                className="marker-list__field"
+              >
+                { index }
+              </div>
+            );
+          })
+        }
       </div>
     );
   }

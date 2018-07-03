@@ -1,0 +1,10 @@
+.marker-list__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.marker-list__field {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

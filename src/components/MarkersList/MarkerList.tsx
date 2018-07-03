@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react';
-import './MarkerList.css'
+import { IMarker } from '../RouteManager/RouteManager';
+
+import './MarkerList.css';
 
 
 export interface IMarkerListProps {
-  routeMarkers: JSX.Element[],
+  routeMarkers: IMarker[],
 }
 
 export class MarkerList extends Component<IMarkerListProps, object> {

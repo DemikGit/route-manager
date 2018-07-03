@@ -7,22 +7,58 @@ import { GoogleMap, Marker } from "react-google-maps"
 import { MapPreview } from '../MapPreview/MapPreview';
 import { MarkerList } from '../MarkersList/MarkerList';
 
-
 export interface IRouteManagerProps {
   text: string,
 }
 
-export class RouteManager extends Component<IRouteManagerProps, object> {
+export interface IMarker {
+  draggable: boolean,
+  onDrag: (event:any, index: number) => void,
+  position: {
+    lat: number,
+    lng: number,
+  }
+}
 
+export interface IRouteManagerState {
+  apiParams: {
+    key: string,
+    libs: string,
+    version: string,
+  },
+  markers: IMarker[],
+}
+
+export class RouteManager extends Component<IRouteManagerProps, IRouteManagerState> {
   public state = {
+
     apiParams: {
       key: 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg',
       libs: 'geometry,drawing,places',
       version: '3.exp',
     },
+
     markers: [
-      <Marker key="lol" position={{ lat: -33, lng: 150.644 }} />,
-      <Marker key="kek" position={{ lat: -34, lng: 150.644 }} />,
+      {
+        draggable: true,
+        onDrag: (event: google.maps.MouseEvent, index: number) => {
+          this.onDrag(event, index)
+        },
+        position: {
+          lat: -34,
+          lng: 146.644,
+        },
+      },
+      {
+        draggable: true,
+        onDrag: (event: google.maps.MouseEvent, index: number) => {
+          this.onDrag(event, index)
+        },
+        position: {
+          lat: -35,
+          lng: 145.644,
+        },
+      },
     ],
   }
 
@@ -30,6 +66,7 @@ export class RouteManager extends Component<IRouteManagerProps, object> {
 
   public render() {
     const { key, libs, version } = this.state.apiParams;
+
     const url = `https://maps.googleapis.com/maps/api/js?key=${
       key }&v=${ version }&libraries=${ libs }`;
 
@@ -42,6 +79,7 @@ export class RouteManager extends Component<IRouteManagerProps, object> {
         <div className="route-manager__map">
           <MapPreview
             googleMapURL={ url }
+            defaultCenter={{ lat: -34.397, lng: 145.644 }}
             loadingElement={ <div style={{ height: '100%' }} /> }
             containerElement={
               <div style={{ width: '100%', height: '50%' }} />
@@ -50,19 +88,64 @@ export class RouteManager extends Component<IRouteManagerProps, object> {
             isMarkerShown={ true }
             mountMap={ this.mapRef }
           >
-            { this.state.markers }
+            {
+              this.renderMarkers()
+            }
           </MapPreview>
         </div>
       </div>
     );
   }
 
+  private renderMarkers = () => {
+    const markers: JSX.Element[] = [];
+
+    this.state.markers.forEach((marker, index) => {
+      const { onDrag, draggable, position } = marker;
+      const extendedDrag = ( event: google.maps.MouseEvent) => {
+        onDrag(event, index);
+      };
+      markers.push(
+        <Marker
+          key={ index.toString() }
+          onDrag={ extendedDrag }
+          draggable={ draggable }
+          position={ position }
+        />
+      );
+    })
+
+    return markers;
+  }
+
   private onAddPoint = () => {
     if (this.mapRef.current) {
       const { lat: centerLat, lng: centerLng } = this.mapRef.current.getCenter();
       // tslint:disable-next-line:no-console
-      console.log(centerLat(), centerLng());
+      this.setState((state: IRouteManagerState) => {
+        const newMarkers: IMarker[] = state.markers;
+
+        newMarkers.push({
+          draggable: true,
+          onDrag: (event: google.maps.MouseEvent, index: number) => {
+            this.onDrag(event, index)
+          },
+          position: {
+            lat: centerLat(),
+            lng: centerLng(),
+          },
+        })
+
+        return {
+          markers: newMarkers,
+        };
+      });
     }
+  }
+
+  private onDrag = (event: google.maps.MouseEvent, index: number): void => {
+    // tslint:disable-next-line:no-console
+    console.log(event.latLng, index)
   }
 
 }

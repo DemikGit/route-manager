@@ -5,7 +5,7 @@ import './BaseInput.css'
 
 export interface IBaseInputProps {
   text: string,
-  onAddPoint: () => void,
+  onAddPoint: (name: string) => void,
 }
 
 export class BaseInput extends Component<IBaseInputProps, object> {
@@ -28,11 +28,15 @@ export class BaseInput extends Component<IBaseInputProps, object> {
   private onKeyUp = ( event: React.SyntheticEvent<HTMLInputElement> ) => {
     if (event.nativeEvent instanceof KeyboardEvent) {
       if (event.nativeEvent.keyCode === 13) {
-        this.props.onAddPoint();
-        if (this.inputRef.current) {
-          this.inputRef.current.value = '';
-        }
+        this.createNewPoint();
       }
+    }
+  }
+
+  private createNewPoint = (): void => {
+    if (this.inputRef.current) {
+      this.props.onAddPoint(this.inputRef.current.value);
+      this.inputRef.current.value = '';
     }
   }
 }

@@ -5,29 +5,33 @@ import './MapPreview.css'
 
 
 export interface IMapPreviewProps {
-  isMarkerShown: boolean,
   children: React.ReactNode | null,
   mountMap: React.RefObject<GoogleMap>,
   defaultCenter: {
     lat: number,
     lng: number,
   }
+  defaultZoom: number,
 }
 
 class MapPreviewComponent extends Component<IMapPreviewProps, object> {
   public render() {
 
-    const { mountMap, isMarkerShown, children, defaultCenter } = this.props;
+    const {
+      mountMap,
+      children,
+      defaultCenter,
+      defaultZoom,
+    } = this.props;
 
     return (
       <GoogleMap
-        defaultZoom={8}
+        defaultZoom={ defaultZoom }
         ref={ mountMap }
+        mapTypeId={ google.maps.MapTypeId.HYBRID }
         defaultCenter={ defaultCenter }
       >
-        {
-          isMarkerShown && children
-        }
+        { children }
       </GoogleMap>
     );
   }

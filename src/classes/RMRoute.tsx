@@ -3,6 +3,7 @@ import { GoogleMap, Marker, Polyline } from 'react-google-maps';
 
 
 export interface IMarker {
+  name: string,
   draggable: boolean,
   onDrag: (event: google.maps.MouseEvent, index: number) => void,
   position: {
@@ -19,6 +20,11 @@ export class RMRoute {
   /* tslint:enable variable-name */
 
   private defaultPoint: IMarker;
+  private polylineOptions: {
+      strokeColor: string,
+      strokeOpacity: number,
+      strokeWeight: number,
+  };
 
   public set updateComponent(componentUpdate: () => void) {
     this._componentUpdate = componentUpdate;
@@ -34,8 +40,14 @@ export class RMRoute {
 
   constructor() {
     this._markers = [];
+    this.polylineOptions = {
+      strokeColor: '#4bdded',
+      strokeOpacity: 0.85,
+      strokeWeight: 4,
+    };
     this.defaultPoint = {
       draggable: true,
+      name: '',
       onDrag: (event: google.maps.MouseEvent, index: number) => {
         this.onDrag(event, index)
       },
@@ -56,7 +68,7 @@ export class RMRoute {
     this._componentUpdate();
   }
 
-  public onAddPoint = (): void => {
+  public onAddPoint = (name: string): void => {
     if (this._mapRef.current) {
 
       const {
@@ -68,6 +80,7 @@ export class RMRoute {
 
       newMarkers.push({
         ...this.defaultPoint,
+        name,
         position: { lat: centerLat(), lng: centerLng() },
       });
 
@@ -110,7 +123,13 @@ export class RMRoute {
         path.push(marker.position);
       })
 
-      return [<Polyline key="uniq_polyline" path={ path } />];
+      return [
+        <Polyline
+          key="uniq_polyline"
+          options={ this.polylineOptions }
+          path={ path }
+        />,
+      ];
     }
 
     return [];

@@ -56,13 +56,16 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
         <div className="route-manager__map">
           <MapPreview
             googleMapURL={ url }
-            defaultCenter={{ lat: -34.397, lng: 145.644 }}
+            defaultCenter={{
+              lat: 37.666030368995685,
+              lng: -116.02545749206541,
+            }}
+            defaultZoom={ 15 }
             loadingElement={ <div style={{ height: '100%' }} /> }
             containerElement={
               <div style={{ width: '100%', height: '50%' }} />
             }
             mapElement={ <div style={{ height: '100%' }} /> }
-            isMarkerShown={ true }
             mountMap={ this.mapRef }
           >
             { route.render() }

@@ -14,13 +14,13 @@ export class MarkerList extends Component<IMarkerListProps, object> {
     return (
       <div className="marker-list__container">
         {
-          this.props.routeMarkers.map(( _ , index ) => {
+          this.props.routeMarkers.map(( marker , index ) => {
             return (
               <div
                 key={ index.toString() }
                 className="marker-list__field"
               >
-                { index }
+                { marker.name }
               </div>
             );
           })

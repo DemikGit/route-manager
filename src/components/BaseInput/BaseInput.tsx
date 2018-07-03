@@ -10,10 +10,17 @@ export interface IBaseInputProps {
 
 export class BaseInput extends Component<IBaseInputProps, object> {
 
+  private inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+
   public render() {
     return (
       <div className="base-input__container">
-        <input type="text" onKeyUp={ this.onKeyUp }/>
+        <input
+          className="base-input__input"
+          ref={ this.inputRef }
+          type="text"
+          onKeyUp={ this.onKeyUp }
+        />
       </div>
     );
   }
@@ -22,6 +29,9 @@ export class BaseInput extends Component<IBaseInputProps, object> {
     if (event.nativeEvent instanceof KeyboardEvent) {
       if (event.nativeEvent.keyCode === 13) {
         this.props.onAddPoint();
+        if (this.inputRef.current) {
+          this.inputRef.current.value = '';
+        }
       }
     }
   }

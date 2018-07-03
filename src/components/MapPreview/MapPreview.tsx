@@ -6,7 +6,7 @@ import './MapPreview.css'
 
 export interface IMapPreviewProps {
   isMarkerShown: boolean,
-  children: React.ReactNode[],
+  children: React.ReactNode | null,
   mountMap: React.RefObject<GoogleMap>,
   defaultCenter: {
     lat: number,

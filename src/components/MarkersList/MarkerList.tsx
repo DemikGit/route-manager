@@ -8,20 +8,29 @@ import './MarkerList.css';
 
 export interface IMarkerListProps {
   routeMarkers: IMarker[],
+  onPointDelete: (index: number) => void,
 }
 
 export class MarkerList extends Component<IMarkerListProps, object> {
   public render() {
+    const { routeMarkers, onPointDelete } = this.props;
+
     return (
       <div className="marker-list__container">
         {
-          this.props.routeMarkers.map(( marker , index ) => {
+          routeMarkers.map(( marker , index ) => {
+            const extendetDelete = () => {
+              onPointDelete(index);
+            }
             return (
               <div
                 key={ index.toString() }
                 className="marker-list__marker"
               >
-                <MarkerWrapper name={ marker.name } />
+                <MarkerWrapper
+                  onPointDelete={ extendetDelete }
+                  name={ marker.name }
+                />
               </div>
             );
           })

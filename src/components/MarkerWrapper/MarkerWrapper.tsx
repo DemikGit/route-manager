@@ -5,13 +5,17 @@ import './MarkerWrapper.css'
 
 export interface IMarkerWrapperProps {
   name: string,
+  onPointDelete: () => void,
 }
 
 export class MarkerWrapper extends Component<IMarkerWrapperProps, object> {
   public render() {
-    const { name } = this.props;
+    const { name, onPointDelete } = this.props;
     return (
-      <div className="marker-wrapper__container">
+      <div
+        className="marker-wrapper__container"
+        onClick={ onPointDelete }
+      >
         <div
           title={ name }
           className="marker-wrapper__name"

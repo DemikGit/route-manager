@@ -68,6 +68,13 @@ export class RMRoute {
     this._componentUpdate();
   }
 
+  public onPointDelete = (index: number): void => {
+    const newMarkers: IMarker[] = this._markers;
+    newMarkers.splice(index, 1);
+    this._markers = newMarkers;
+    this._componentUpdate();
+  }
+
   public onAddPoint = (name: string): void => {
     if (this._mapRef.current) {
 

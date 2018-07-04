@@ -1,9 +1,50 @@
 .marker-wrapper__container {
-
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #bbbbbb;
+  border-radius: 3px;
+  padding: 4px;
+  width: 98%;
+  height: 24px;
+  margin-top: 6px;
+  background-color: #ffffff;
 }
 
 .marker-wrapper__name {
-  width: 100%;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 400;
+  max-width: 88%;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.marker-wrapper__button {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: -7px;
+  top: -6px;
+  transform: rotateZ(30deg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.3));
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.marker-wrapper__button__path {
+  transform: translate(10px, 10px) rotateZ(60deg);
+  transform-origin: center;
+}
+
+.marker-wrapper__button__text {
+  fill: #ffffff;
+  font-size: 150px;
+  transform-origin: center;
+  transform: translate(-22px, 77px) rotateZ(-31deg);
 }

@@ -1,7 +1,7 @@
 .marker-list__container {
   box-shadow: 0px 0px 4px 0px rgba(60, 60, 60, 0.5);
   border-radius: 3px;
-  margin-top: 4px;
+  margin-top: 8px;
   height: calc(100% - 16px);
   display: flex;
   flex-direction: column;

@@ -3,9 +3,10 @@ import { GoogleMap, Marker, Polyline } from 'react-google-maps';
 
 
 export interface IMarker {
+  id: string,
   name: string,
   draggable: boolean,
-  onDrag: (event: google.maps.MouseEvent, index: number) => void,
+  onDrag: (event: google.maps.MouseEvent, id: string) => void,
   position: {
     lat: number,
     lng: number,
@@ -47,9 +48,10 @@ export class RMRoute {
     };
     this.defaultPoint = {
       draggable: true,
+      id: '',
       name: '',
-      onDrag: (event: google.maps.MouseEvent, index: number) => {
-        this.onDrag(event, index)
+      onDrag: (event: google.maps.MouseEvent, id: string) => {
+        this.onDrag(event, id);
       },
       position: {
         lat: 0,
@@ -58,20 +60,25 @@ export class RMRoute {
     };
   }
 
-  public onDrag = (event: google.maps.MouseEvent, index: number): void => {
+  public onDrag = (event: google.maps.MouseEvent, id: string): void => {
     const { lat, lng } = event.latLng;
 
-    const newMarkers: IMarker[] = this._markers;
-    newMarkers[index].position = { lat: lat() , lng: lng() };
+    const markerTarget: IMarker | undefined =
+      this._markers.find((point: IMarker) => {
+        return point.id.includes(id);
+    });
 
-    this._markers = newMarkers;
+    if (markerTarget) {
+      markerTarget.position = { lat: lat() , lng: lng() };
+    }
+
     this._componentUpdate();
   }
 
-  public onPointDelete = (index: number): void => {
-    const newMarkers: IMarker[] = this._markers;
-    newMarkers.splice(index, 1);
-    this._markers = newMarkers;
+  public onPointDelete = (id: string): void => {
+    this._markers = this._markers.filter((point: IMarker) => {
+      return !point.id.includes(id);
+    });
     this._componentUpdate();
   }
 
@@ -83,15 +90,13 @@ export class RMRoute {
         lng: centerLng,
       } = this._mapRef.current.getCenter();
 
-      const newMarkers: IMarker[] = this._markers;
-
-      newMarkers.push({
+      this._markers.push({
         ...this.defaultPoint,
+        id: this.uuidV4(),
         name,
         position: { lat: centerLat(), lng: centerLng() },
       });
 
-      this._markers = newMarkers;
       this._componentUpdate();
     }
   }
@@ -103,15 +108,15 @@ export class RMRoute {
   private renderMarkers = (): JSX.Element[] => {
     const markers: JSX.Element[] = [];
 
-    this._markers.forEach((marker, index) => {
-      const { onDrag, draggable, position } = marker;
+    this._markers.forEach((marker) => {
+      const { onDrag, draggable, position, id } = marker;
       const extendedDrag = ( event: google.maps.MouseEvent) => {
-        onDrag(event, index);
+        onDrag(event, id);
       };
 
       markers.push(
         <Marker
-          key={ index.toString() }
+          key={ id }
           onDrag={ extendedDrag }
           draggable={ draggable }
           position={ position }
@@ -132,7 +137,7 @@ export class RMRoute {
 
       return [
         <Polyline
-          key="uniq_polyline"
+          key={ this.uuidV4() }
           options={ this.polylineOptions }
           path={ path }
         />,
@@ -140,6 +145,16 @@ export class RMRoute {
     }
 
     return [];
+  }
+
+  private uuidV4 = (): string => {
+    // tslint:disable:no-bitwise
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    // tslint:enable:no-bitwise
   }
 
 }

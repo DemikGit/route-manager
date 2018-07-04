@@ -51,7 +51,10 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
       <div className="route-manager__container">
         <div className="route-manager__controls">
           <BaseInput text="kek" onAddPoint={ route.onAddPoint } />
-          <MarkerList routeMarkers={ route.markers } onPointDelete={ route.onPointDelete } />
+          <MarkerList
+            routeMarkers={ route.markers }
+            onPointDelete={ route.onPointDelete }
+          />
         </div>
         <div className="route-manager__map">
           <MapPreview

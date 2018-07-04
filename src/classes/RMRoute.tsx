@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { GoogleMap, Marker, Polyline } from 'react-google-maps';
-
+import { GoogleMap, InfoWindow, Marker, Polyline } from 'react-google-maps';
 
 export interface IMarker {
   id: string,
   name: string,
   draggable: boolean,
+  showInfoBox: boolean,
   onDrag: (event: google.maps.MouseEvent, id: string) => void,
   position: {
     lat: number,
@@ -57,7 +57,30 @@ export class RMRoute {
         lat: 0,
         lng: 0,
       },
+      showInfoBox: false,
     };
+  }
+
+  public swapPoints = (srcId: string, targetId: string): void => {
+    if(srcId !== targetId) {
+      const newMarkers = this._markers;
+
+      const srcMarkerIndex = this._markers.findIndex((marker: IMarker) => {
+        return marker.id === srcId;
+      });
+      const srcMarker = this._markers[srcMarkerIndex];
+
+      const targetMarkerIndex = this._markers.findIndex((marker: IMarker) => {
+        return marker.id === targetId;
+      });
+      const targetMarker = this._markers[targetMarkerIndex];
+
+      newMarkers[targetMarkerIndex] = srcMarker;
+      newMarkers[srcMarkerIndex] = targetMarker;
+
+      this._markers = newMarkers;
+      this._componentUpdate();
+    }
   }
 
   public onDrag = (event: google.maps.MouseEvent, id: string): void => {
@@ -79,6 +102,7 @@ export class RMRoute {
     this._markers = this._markers.filter((point: IMarker) => {
       return !point.id.includes(id);
     });
+
     this._componentUpdate();
   }
 
@@ -105,6 +129,20 @@ export class RMRoute {
     return this.renderMarkers().concat(this.renderPolyline());
   }
 
+  private onTogggleInfoBox = (id: string): void => {
+    const targetMarker: IMarker | undefined = this._markers.find(
+      (marker: IMarker): boolean => {
+        return marker.id === id;
+      }
+    );
+
+    if( targetMarker ) {
+      targetMarker.showInfoBox = !targetMarker.showInfoBox;
+    }
+
+    this._componentUpdate();
+  }
+
   private renderMarkers = (): JSX.Element[] => {
     const markers: JSX.Element[] = [];
 
@@ -114,13 +152,29 @@ export class RMRoute {
         onDrag(event, id);
       };
 
+      const extendetToggleInfoBox = ( ) => {
+        this.onTogggleInfoBox(id);
+      };
+
       markers.push(
         <Marker
           key={ id }
+          onClick={ extendetToggleInfoBox }
           onDrag={ extendedDrag }
           draggable={ draggable }
           position={ position }
-        />
+          labelAnchor={ new google.maps.Point(0, 0) }
+        >
+          { marker.showInfoBox && (
+            <InfoWindow
+              onCloseClick={ extendetToggleInfoBox }
+            >
+              <div>
+                {`  ${ marker.name }`}
+              </div>
+            </InfoWindow>
+          )}
+        </Marker>
       );
     })
 
@@ -156,5 +210,4 @@ export class RMRoute {
     });
     // tslint:enable:no-bitwise
   }
-
 }

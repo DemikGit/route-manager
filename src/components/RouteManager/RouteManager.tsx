@@ -54,6 +54,7 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
           <MarkerList
             routeMarkers={ route.markers }
             onPointDelete={ route.onPointDelete }
+            swapPoints={ route.swapPoints }
           />
         </div>
         <div className="route-manager__map">

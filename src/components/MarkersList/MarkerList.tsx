@@ -9,18 +9,34 @@ import './MarkerList.css';
 export interface IMarkerListProps {
   routeMarkers: IMarker[],
   onPointDelete: (id: string) => void,
+  swapPoints: (srcId: string, targetId: string) => void,
 }
 
-export class MarkerList extends Component<IMarkerListProps, object> {
+export interface IMarkerListState {
+  srcId: string,
+}
+
+export class MarkerList extends Component<IMarkerListProps, IMarkerListState> {
+
+  public state = {
+    srcId: '',
+  }
+
   public render() {
     const { routeMarkers, onPointDelete } = this.props;
 
     return (
       <div className="marker-list__container">
         {
-          routeMarkers.map(( marker: IMarker ) => {
-            const extendetDelete = () => {
-              onPointDelete(marker.id);
+          routeMarkers.length > 0 && routeMarkers.map(( marker: IMarker ) => {
+            const extendetOnDragEnter =
+              (event: React.SyntheticEvent<HTMLDivElement>) => {
+              this.onDragEnter(marker.id);
+            }
+
+            const extendetOnDragStart =
+              (event: React.SyntheticEvent<HTMLDivElement>) => {
+              this.onDragStart(marker.id);
             }
             return (
               <div
@@ -28,7 +44,10 @@ export class MarkerList extends Component<IMarkerListProps, object> {
                 className="marker-list__marker"
               >
                 <MarkerWrapper
-                  onPointDelete={ extendetDelete }
+                  onDragEnter={ extendetOnDragEnter }
+                  onDragStart={ extendetOnDragStart }
+                  id={ marker.id }
+                  onPointDelete={ onPointDelete }
                   name={ marker.name }
                 />
               </div>
@@ -37,5 +56,16 @@ export class MarkerList extends Component<IMarkerListProps, object> {
         }
       </div>
     );
+  }
+
+  private onDragEnter = (targetId: string ) => {
+    const { srcId } = this.state;
+    this.props.swapPoints(srcId, targetId);
+  }
+
+  private onDragStart = (srcId: string) => {
+    this.setState((state: IMarkerListState) => {
+      return { srcId };
+    });
   }
 }

@@ -31,12 +31,15 @@ export class MarkerList extends Component<IMarkerListProps, IMarkerListState> {
           routeMarkers.length > 0 && routeMarkers.map(( marker: IMarker ) => {
             const extendedOnDragEnter =
               (event: React.SyntheticEvent<HTMLDivElement>) => {
-              this.onDragEnter(marker.id);
+                this.onDragEnter(marker.id);
             }
 
             const extendedOnDragStart =
               (event: React.SyntheticEvent<HTMLDivElement>) => {
-              this.onDragStart(marker.id);
+                if (event.nativeEvent instanceof DragEvent) {
+                  event.nativeEvent.dataTransfer.setData('text/plain', 'data');
+                }
+                this.onDragStart(marker.id);
             }
             return (
               <div

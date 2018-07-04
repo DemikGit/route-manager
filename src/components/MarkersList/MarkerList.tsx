@@ -29,12 +29,12 @@ export class MarkerList extends Component<IMarkerListProps, IMarkerListState> {
       <div className="marker-list__container">
         {
           routeMarkers.length > 0 && routeMarkers.map(( marker: IMarker ) => {
-            const extendetOnDragEnter =
+            const extendedOnDragEnter =
               (event: React.SyntheticEvent<HTMLDivElement>) => {
               this.onDragEnter(marker.id);
             }
 
-            const extendetOnDragStart =
+            const extendedOnDragStart =
               (event: React.SyntheticEvent<HTMLDivElement>) => {
               this.onDragStart(marker.id);
             }
@@ -44,8 +44,8 @@ export class MarkerList extends Component<IMarkerListProps, IMarkerListState> {
                 className="marker-list__marker"
               >
                 <MarkerWrapper
-                  onDragEnter={ extendetOnDragEnter }
-                  onDragStart={ extendetOnDragStart }
+                  onDragEnter={ extendedOnDragEnter }
+                  onDragStart={ extendedOnDragStart }
                   id={ marker.id }
                   onPointDelete={ onPointDelete }
                   name={ marker.name }

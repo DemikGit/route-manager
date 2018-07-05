@@ -1,4 +1,4 @@
-### demo: https://route-manager.herokuapp.com/
+### demo: https://route-manager.herokuapp.com/ (site may not be available)
 
 For starting application:
 - `cd ../route-manager`

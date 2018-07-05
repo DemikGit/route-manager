@@ -13,7 +13,7 @@ export interface IMarker {
   }
 }
 
-export class RMRoute {
+export class RouteService {
   /* tslint:disable variable-name*/
   private _markers: IMarker[];
   private _mapRef: React.RefObject<GoogleMap>;
@@ -129,7 +129,7 @@ export class RMRoute {
     return this.renderMarkers().concat(this.renderPolyline());
   }
 
-  private onTogggleInfoBox = (id: string): void => {
+  private onToggleInfoBox = (id: string): void => {
     const targetMarker: IMarker | undefined = this._markers.find(
       (marker: IMarker): boolean => {
         return marker.id === id;
@@ -152,14 +152,14 @@ export class RMRoute {
         onDrag(event, id);
       };
 
-      const extendetToggleInfoBox = ( ) => {
-        this.onTogggleInfoBox(id);
+      const extendedToggleInfoBox = ( ) => {
+        this.onToggleInfoBox(id);
       };
 
       markers.push(
         <Marker
           key={ id }
-          onClick={ extendetToggleInfoBox }
+          onClick={ extendedToggleInfoBox }
           onDrag={ extendedDrag }
           draggable={ draggable }
           position={ position }
@@ -167,7 +167,7 @@ export class RMRoute {
         >
           { marker.showInfoBox && (
             <InfoWindow
-              onCloseClick={ extendetToggleInfoBox }
+              onCloseClick={ extendedToggleInfoBox }
             >
               <div>
                 {`  ${ marker.name }`}

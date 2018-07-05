@@ -1,9 +1,11 @@
 .base-input__container {
   background-color: inherit;
+  height: 24px;
 }
 
 .base-input__input {
   width: 100%;
+  height: 100%;
   padding-left: 4px;
   border: 1px solid #aaaaaa;
   background-image: none;

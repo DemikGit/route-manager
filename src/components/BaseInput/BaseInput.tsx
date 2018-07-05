@@ -4,7 +4,7 @@ import './BaseInput.css'
 
 
 export interface IBaseInputProps {
-  text: string,
+  placeholder: string,
   onAddPoint: (name: string) => void,
 }
 
@@ -16,6 +16,7 @@ export class BaseInput extends Component<IBaseInputProps, object> {
     return (
       <div className="base-input__container">
         <input
+          placeholder={ this.props.placeholder }
           className="base-input__input"
           ref={ this.inputRef }
           type="text"
@@ -34,7 +35,7 @@ export class BaseInput extends Component<IBaseInputProps, object> {
   }
 
   private createNewPoint = (): void => {
-    if (this.inputRef.current) {
+    if (this.inputRef.current && this.inputRef.current.value !== '') {
       this.props.onAddPoint(this.inputRef.current.value);
       this.inputRef.current.value = '';
     }

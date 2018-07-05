@@ -4,7 +4,7 @@ import { BaseInput } from '../BaseInput/BaseInput';
 import './RouteManager.css'
 
 import { GoogleMap } from "react-google-maps"
-import { RMRoute } from '../../classes/RMRoute';
+import { RouteService } from '../../services/RouteService';
 import { MapPreview } from '../MapPreview/MapPreview';
 import { MarkerList } from '../MarkersList/MarkerList';
 
@@ -17,7 +17,7 @@ export interface IRouteManagerState {
     libs: string,
     version: string,
   },
-  route: RMRoute,
+  routeService: RouteService,
 }
 
 export class RouteManager extends Component<IRouteManagerProps, IRouteManagerState> {
@@ -29,19 +29,19 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
       version: '3.exp',
     },
 
-    route: new RMRoute(),
+    routeService: new RouteService(),
   }
 
   private mapRef: React.RefObject<GoogleMap> = React.createRef();
 
   public componentDidMount() {
-    const { route } = this.state;
-    route.mapRef = this.mapRef;
-    route.updateComponent = () => this.forceUpdate();
+    const { routeService } = this.state;
+    routeService.mapRef = this.mapRef;
+    routeService.updateComponent = () => this.forceUpdate();
   }
 
   public render() {
-    const { route } = this.state;
+    const { routeService } = this.state;
     const { key, libs, version } = this.state.apiParams;
 
     const url = `https://maps.googleapis.com/maps/api/js?key=${
@@ -50,11 +50,14 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
     return (
       <div className="route-manager__container">
         <div className="route-manager__controls">
-          <BaseInput text="kek" onAddPoint={ route.onAddPoint } />
+          <BaseInput
+            placeholder="Enter name for new routes point..."
+            onAddPoint={ routeService.onAddPoint }
+          />
           <MarkerList
-            routeMarkers={ route.markers }
-            onPointDelete={ route.onPointDelete }
-            swapPoints={ route.swapPoints }
+            routeMarkers={ routeService.markers }
+            onPointDelete={ routeService.onPointDelete }
+            swapPoints={ routeService.swapPoints }
           />
         </div>
         <div className="route-manager__map">
@@ -72,7 +75,7 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
             mapElement={ <div style={{ height: '100%' }} /> }
             mountMap={ this.mapRef }
           >
-            { route.render() }
+            { routeService.render() }
           </MapPreview>
         </div>
       </div>

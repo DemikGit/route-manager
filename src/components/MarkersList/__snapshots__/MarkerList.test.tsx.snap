@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`call swapPoint if onDragEnter was called 1`] = `
+<div
+  className="marker-list__container"
+>
+  <div
+    className="marker-list__marker"
+    key="uuid"
+  >
+    <MarkerWrapper
+      id="uuid"
+      name="Test Marker"
+      onDragEnter={[Function]}
+      onDragStart={[Function]}
+      onPointDelete={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`change srcId if onDragStart was called 1`] = `
+<div
+  className="marker-list__container"
+>
+  <div
+    className="marker-list__marker"
+    key="uuid"
+  >
+    <MarkerWrapper
+      id="uuid"
+      name="Test Marker"
+      onDragEnter={[Function]}
+      onDragStart={[Function]}
+      onPointDelete={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  className="marker-list__container"
+>
+  <div
+    className="marker-list__marker"
+    key="uuid"
+  >
+    <MarkerWrapper
+      id="uuid"
+      name="Test Marker"
+      onDragEnter={[Function]}
+      onDragStart={[Function]}
+      onPointDelete={[Function]}
+    />
+  </div>
+</div>
+`;

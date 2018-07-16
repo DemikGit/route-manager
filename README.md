@@ -2,7 +2,7 @@
 
 To run the application test:
 - `cd ../route-manager`
-- `yarn build`
+- `yarn test`
 
 
 For starting application:

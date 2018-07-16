@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="route-manager__container"
+>
+  <div
+    className="route-manager__controls"
+  >
+    <BaseInput
+      onKeyUp={[Function]}
+      placeholder="Enter name for new routes point..."
+    />
+    <MarkerList
+      onPointDelete={[Function]}
+      routeMarkers={Array []}
+      swapPoints={[Function]}
+    />
+  </div>
+  <div
+    className="route-manager__map"
+  >
+    <withScriptjs(withGoogleMap(MapPreviewComponent))
+      containerElement={
+        <div
+          className="route-manager__map__wrapper"
+        />
+      }
+      defaultCenter={
+        Object {
+          "lat": 37.666030368995685,
+          "lng": -116.02545749206541,
+        }
+      }
+      defaultZoom={15}
+      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSnQhXn5WfyBi68hCgx5qA4pmApKkN8Jc&v=3.exp&libraries=geometry,drawing,places"
+      loadingElement={
+        <div
+          style={
+            Object {
+              "height": "100%",
+            }
+          }
+        />
+      }
+      mapElement={
+        <div
+          style={
+            Object {
+              "height": "100%",
+            }
+          }
+        />
+      }
+      mountMap={
+        Object {
+          "current": null,
+        }
+      }
+    />
+  </div>
+</div>
+`;

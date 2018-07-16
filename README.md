@@ -1,4 +1,9 @@
-### demo: https://route-manager.herokuapp.com/ (site may not be available)
+### demo: https://route-manager.herokuapp.com/ (site may not be available, you need to wait a while until it wakes up)
+
+To run the application test:
+- `cd ../route-manager`
+- `yarn build`
+
 
 For starting application:
 - `cd ../route-manager`
@@ -10,5 +15,4 @@ If you wants to createa build:
 - `cd ../route-manager`
 - `yarn build`
 - You may find build in `../route-manager/build`
-
 

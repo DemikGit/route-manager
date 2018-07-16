@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`call onKeyUp when user types  1`] = `
+<div
+  className="base-input__container"
+>
+  <input
+    className="base-input__input"
+    onKeyUp={
+      [MockFunction onAddPoint] {
+        "calls": Array [
+          Array [
+            Object {
+              "nativeEvent": Object {
+                "key": "K",
+              },
+            },
+          ],
+        ],
+      }
+    }
+    placeholder="Enter name for new routes point..."
+    type="text"
+  />
+</div>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  className="base-input__container"
+>
+  <input
+    className="base-input__input"
+    onKeyUp={[MockFunction]}
+    placeholder="Enter name for new routes point..."
+    type="text"
+  />
+</div>
+`;

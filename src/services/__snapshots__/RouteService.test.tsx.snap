@@ -1,0 +1,412 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add new marker 1`] = `
+RouteService {
+  "_componentUpdate": [MockFunction] {
+    "calls": Array [
+      Array [],
+    ],
+  },
+  "_markers": Array [
+    Object {
+      "draggable": true,
+      "id": "1",
+      "name": "Test Marker",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+  ],
+  "defaultPoint": Object {
+    "draggable": true,
+    "id": "",
+    "name": "",
+    "onDrag": [Function],
+    "position": Object {
+      "lat": 0,
+      "lng": 0,
+    },
+    "showInfoBox": false,
+  },
+  "onAddPoint": [Function],
+  "onDrag": [Function],
+  "onPointDelete": [Function],
+  "onToggleInfoBox": [Function],
+  "polylineOptions": Object {
+    "strokeColor": "#4bdded",
+    "strokeOpacity": 0.85,
+    "strokeWeight": 4,
+  },
+  "render": [Function],
+  "renderMarkers": [Function],
+  "renderPolyline": [Function],
+  "swapPoints": [Function],
+  "uuidV4": [MockFunction] {
+    "calls": Array [
+      Array [],
+    ],
+  },
+}
+`;
+
+exports[`change marker position when dragging 1`] = `
+RouteService {
+  "_componentUpdate": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+    ],
+  },
+  "_markers": Array [
+    Object {
+      "draggable": true,
+      "id": "1",
+      "name": "Test Marker",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 15,
+        "lng": 15,
+      },
+      "showInfoBox": false,
+    },
+  ],
+  "defaultPoint": Object {
+    "draggable": true,
+    "id": "",
+    "name": "",
+    "onDrag": [Function],
+    "position": Object {
+      "lat": 0,
+      "lng": 0,
+    },
+    "showInfoBox": false,
+  },
+  "onAddPoint": [Function],
+  "onDrag": [Function],
+  "onPointDelete": [Function],
+  "onToggleInfoBox": [Function],
+  "polylineOptions": Object {
+    "strokeColor": "#4bdded",
+    "strokeOpacity": 0.85,
+    "strokeWeight": 4,
+  },
+  "render": [Function],
+  "renderMarkers": [Function],
+  "renderPolyline": [Function],
+  "swapPoints": [Function],
+  "uuidV4": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+}
+`;
+
+exports[`remove marker 1`] = `
+RouteService {
+  "_componentUpdate": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+  "_markers": Array [
+    Object {
+      "draggable": true,
+      "id": "1",
+      "name": "Test Marker",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+    Object {
+      "draggable": true,
+      "id": "2",
+      "name": "Test Marker",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+  ],
+  "defaultPoint": Object {
+    "draggable": true,
+    "id": "",
+    "name": "",
+    "onDrag": [Function],
+    "position": Object {
+      "lat": 0,
+      "lng": 0,
+    },
+    "showInfoBox": false,
+  },
+  "onAddPoint": [Function],
+  "onDrag": [Function],
+  "onPointDelete": [Function],
+  "onToggleInfoBox": [Function],
+  "polylineOptions": Object {
+    "strokeColor": "#4bdded",
+    "strokeOpacity": 0.85,
+    "strokeWeight": 4,
+  },
+  "render": [Function],
+  "renderMarkers": [Function],
+  "renderPolyline": [Function],
+  "swapPoints": [Function],
+  "uuidV4": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+}
+`;
+
+exports[`swap markers in list 1`] = `
+RouteService {
+  "_componentUpdate": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+  "_markers": Array [
+    Object {
+      "draggable": true,
+      "id": "3",
+      "name": "Test Marker 3",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+    Object {
+      "draggable": true,
+      "id": "2",
+      "name": "Test Marker 2",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+    Object {
+      "draggable": true,
+      "id": "1",
+      "name": "Test Marker 1",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+  ],
+  "defaultPoint": Object {
+    "draggable": true,
+    "id": "",
+    "name": "",
+    "onDrag": [Function],
+    "position": Object {
+      "lat": 0,
+      "lng": 0,
+    },
+    "showInfoBox": false,
+  },
+  "onAddPoint": [Function],
+  "onDrag": [Function],
+  "onPointDelete": [Function],
+  "onToggleInfoBox": [Function],
+  "polylineOptions": Object {
+    "strokeColor": "#4bdded",
+    "strokeOpacity": 0.85,
+    "strokeWeight": 4,
+  },
+  "render": [Function],
+  "renderMarkers": [Function],
+  "renderPolyline": [Function],
+  "swapPoints": [Function],
+  "uuidV4": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+}
+`;
+
+exports[`test rendering JSX.Element 1`] = `
+RouteService {
+  "_componentUpdate": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+  "_markers": Array [
+    Object {
+      "draggable": true,
+      "id": "1",
+      "name": "Test Marker 1",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+    Object {
+      "draggable": true,
+      "id": "2",
+      "name": "Test Marker 2",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+    Object {
+      "draggable": true,
+      "id": "3",
+      "name": "Test Marker 3",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": false,
+    },
+  ],
+  "defaultPoint": Object {
+    "draggable": true,
+    "id": "",
+    "name": "",
+    "onDrag": [Function],
+    "position": Object {
+      "lat": 0,
+      "lng": 0,
+    },
+    "showInfoBox": false,
+  },
+  "onAddPoint": [Function],
+  "onDrag": [Function],
+  "onPointDelete": [Function],
+  "onToggleInfoBox": [Function],
+  "polylineOptions": Object {
+    "strokeColor": "#4bdded",
+    "strokeOpacity": 0.85,
+    "strokeWeight": 4,
+  },
+  "render": [Function],
+  "renderMarkers": [Function],
+  "renderPolyline": [Function],
+  "swapPoints": [Function],
+  "uuidV4": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+}
+`;
+
+exports[`toggle markers babble 1`] = `
+RouteService {
+  "_componentUpdate": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+    ],
+  },
+  "_markers": Array [
+    Object {
+      "draggable": true,
+      "id": "1",
+      "name": "Test Marker 1",
+      "onDrag": [Function],
+      "position": Object {
+        "lat": 0,
+        "lng": 0,
+      },
+      "showInfoBox": true,
+    },
+  ],
+  "defaultPoint": Object {
+    "draggable": true,
+    "id": "",
+    "name": "",
+    "onDrag": [Function],
+    "position": Object {
+      "lat": 0,
+      "lng": 0,
+    },
+    "showInfoBox": false,
+  },
+  "onAddPoint": [Function],
+  "onDrag": [Function],
+  "onPointDelete": [Function],
+  "onToggleInfoBox": [Function],
+  "polylineOptions": Object {
+    "strokeColor": "#4bdded",
+    "strokeOpacity": 0.85,
+    "strokeWeight": 4,
+  },
+  "render": [Function],
+  "renderMarkers": [Function],
+  "renderPolyline": [Function],
+  "swapPoints": [Function],
+  "uuidV4": [MockFunction] {
+    "calls": Array [
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+      Array [],
+    ],
+  },
+}
+`;

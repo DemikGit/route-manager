@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`call onDragEnter when element was overlapped  1`] = `
+<div
+  className="marker-wrapper__container"
+  draggable={true}
+  onDragEnter={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+    }
+  }
+  onDragStart={[MockFunction]}
+>
+  <div
+    className="marker-wrapper__name"
+    title="MarkerName"
+  >
+    MarkerName
+  </div>
+  <svg
+    className="marker-wrapper__button"
+    height="200px"
+    onClick={[MockFunction]}
+    version="1.1"
+    viewBox="0 0 200 200"
+    width="200px"
+    x="0"
+    xmlns="http://www.w3.org/2000/svg"
+    y="0"
+  >
+    <linearGradient
+      gradientTransform="rotate(60)"
+      id="linear-gradient"
+    >
+      <stop
+        offset="0%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="20%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="80%"
+        stopColor="rgb(255, 100, 100)"
+      />
+      <stop
+        offset="100%"
+        stopColor="rgb(255, 100, 100)"
+      />
+    </linearGradient>
+    <path
+      className="marker-wrapper__button__path"
+      d="M86.60254037844386 0
+              L 173.20508075688772 50
+              L 173.20508075688772 150
+              L 86.60254037844386 200
+              L 0 150
+              L 0 50
+              Z"
+      fill="url(#linear-gradient)"
+    />
+    <text
+      className="marker-wrapper__button__text"
+      x="50%"
+      y="50%"
+    >
+      ✖
+    </text>
+  </svg>
+</div>
+`;
+
+exports[`call onDragStart when dragging started  1`] = `
+<div
+  className="marker-wrapper__container"
+  draggable={true}
+  onDragEnter={[MockFunction]}
+  onDragStart={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+    }
+  }
+>
+  <div
+    className="marker-wrapper__name"
+    title="MarkerName"
+  >
+    MarkerName
+  </div>
+  <svg
+    className="marker-wrapper__button"
+    height="200px"
+    onClick={[MockFunction]}
+    version="1.1"
+    viewBox="0 0 200 200"
+    width="200px"
+    x="0"
+    xmlns="http://www.w3.org/2000/svg"
+    y="0"
+  >
+    <linearGradient
+      gradientTransform="rotate(60)"
+      id="linear-gradient"
+    >
+      <stop
+        offset="0%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="20%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="80%"
+        stopColor="rgb(255, 100, 100)"
+      />
+      <stop
+        offset="100%"
+        stopColor="rgb(255, 100, 100)"
+      />
+    </linearGradient>
+    <path
+      className="marker-wrapper__button__path"
+      d="M86.60254037844386 0
+              L 173.20508075688772 50
+              L 173.20508075688772 150
+              L 86.60254037844386 200
+              L 0 150
+              L 0 50
+              Z"
+      fill="url(#linear-gradient)"
+    />
+    <text
+      className="marker-wrapper__button__text"
+      x="50%"
+      y="50%"
+    >
+      ✖
+    </text>
+  </svg>
+</div>
+`;
+
+exports[`call onPointDelete if delete button was clicked  1`] = `
+<div
+  className="marker-wrapper__container"
+  draggable={true}
+  onDragEnter={[MockFunction]}
+  onDragStart={[MockFunction]}
+>
+  <div
+    className="marker-wrapper__name"
+    title="MarkerName"
+  >
+    MarkerName
+  </div>
+  <svg
+    className="marker-wrapper__button"
+    height="200px"
+    onClick={
+      [MockFunction] {
+        "calls": Array [
+          Array [],
+        ],
+      }
+    }
+    version="1.1"
+    viewBox="0 0 200 200"
+    width="200px"
+    x="0"
+    xmlns="http://www.w3.org/2000/svg"
+    y="0"
+  >
+    <linearGradient
+      gradientTransform="rotate(60)"
+      id="linear-gradient"
+    >
+      <stop
+        offset="0%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="20%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="80%"
+        stopColor="rgb(255, 100, 100)"
+      />
+      <stop
+        offset="100%"
+        stopColor="rgb(255, 100, 100)"
+      />
+    </linearGradient>
+    <path
+      className="marker-wrapper__button__path"
+      d="M86.60254037844386 0
+              L 173.20508075688772 50
+              L 173.20508075688772 150
+              L 86.60254037844386 200
+              L 0 150
+              L 0 50
+              Z"
+      fill="url(#linear-gradient)"
+    />
+    <text
+      className="marker-wrapper__button__text"
+      x="50%"
+      y="50%"
+    >
+      ✖
+    </text>
+  </svg>
+</div>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  className="marker-wrapper__container"
+  draggable={true}
+  onDragEnter={[MockFunction]}
+  onDragStart={[MockFunction]}
+>
+  <div
+    className="marker-wrapper__name"
+    title="MarkerName"
+  >
+    MarkerName
+  </div>
+  <svg
+    className="marker-wrapper__button"
+    height="200px"
+    onClick={[MockFunction]}
+    version="1.1"
+    viewBox="0 0 200 200"
+    width="200px"
+    x="0"
+    xmlns="http://www.w3.org/2000/svg"
+    y="0"
+  >
+    <linearGradient
+      gradientTransform="rotate(60)"
+      id="linear-gradient"
+    >
+      <stop
+        offset="0%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="20%"
+        stopColor="rgb(245, 95, 26)"
+      />
+      <stop
+        offset="80%"
+        stopColor="rgb(255, 100, 100)"
+      />
+      <stop
+        offset="100%"
+        stopColor="rgb(255, 100, 100)"
+      />
+    </linearGradient>
+    <path
+      className="marker-wrapper__button__path"
+      d="M86.60254037844386 0
+              L 173.20508075688772 50
+              L 173.20508075688772 150
+              L 86.60254037844386 200
+              L 0 150
+              L 0 50
+              Z"
+      fill="url(#linear-gradient)"
+    />
+    <text
+      className="marker-wrapper__button__text"
+      x="50%"
+      y="50%"
+    >
+      ✖
+    </text>
+  </svg>
+</div>
+`;

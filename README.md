@@ -11,7 +11,7 @@ For starting application:
 - `yarn start`
 - visit address in browser: `127.0.0.1`
 
-If you wants to createa build:
+If you wants to create a build:
 - `cd ../route-manager`
 - `yarn build`
 - You may find build in `../route-manager/build`

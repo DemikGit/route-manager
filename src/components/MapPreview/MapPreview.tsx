@@ -5,7 +5,7 @@ import './MapPreview.css'
 
 
 export interface IMapPreviewProps {
-  children: React.ReactNode | null,
+  children?: React.ReactNode,
   mountMap: React.RefObject<GoogleMap>,
   defaultCenter: {
     lat: number,
@@ -31,7 +31,7 @@ class MapPreviewComponent extends Component<IMapPreviewProps, object> {
         mapTypeId={ google.maps.MapTypeId.HYBRID }
         defaultCenter={ defaultCenter }
       >
-        { children }
+        { children && children }
       </GoogleMap>
     );
   }

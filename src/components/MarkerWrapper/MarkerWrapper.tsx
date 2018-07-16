@@ -6,15 +6,14 @@ import './MarkerWrapper.css'
 export interface IMarkerWrapperProps {
   name: string,
   id: string,
-  onPointDelete: (id: string) => void,
-  onDragEnter: (event: React.SyntheticEvent<HTMLDivElement> ) => void,
-  onDragStart: (event: React.SyntheticEvent<HTMLDivElement> ) => void,
+  onPointDelete: () => void,
+  onDragEnter: (event: React.DragEvent<HTMLDivElement> ) => void,
+  onDragStart: (event: React.DragEvent<HTMLDivElement> ) => void,
 }
 
 export class MarkerWrapper extends Component<IMarkerWrapperProps, object> {
   public render() {
-    const { name, onPointDelete, id, onDragEnter, onDragStart } = this.props;
-    const onDelete = () => { onPointDelete(id) };
+    const { name, onPointDelete, onDragEnter, onDragStart } = this.props;
     return (
       <div
         className="marker-wrapper__container"
@@ -32,7 +31,7 @@ export class MarkerWrapper extends Component<IMarkerWrapperProps, object> {
           xmlns="http://www.w3.org/2000/svg"
           x="0" y="0" width="200px" height="200px"
           version="1.1" viewBox="0 0 200 200"
-          onClick={ onDelete }
+          onClick={ onPointDelete }
           className="marker-wrapper__button"
         >
           <linearGradient

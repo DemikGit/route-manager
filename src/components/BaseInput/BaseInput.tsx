@@ -5,12 +5,10 @@ import './BaseInput.css'
 
 export interface IBaseInputProps {
   placeholder: string,
-  onAddPoint: (name: string) => void,
+  onKeyUp: (event: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 export class BaseInput extends Component<IBaseInputProps, object> {
-
-  private inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   public render() {
     return (
@@ -18,26 +16,10 @@ export class BaseInput extends Component<IBaseInputProps, object> {
         <input
           placeholder={ this.props.placeholder }
           className="base-input__input"
-          ref={ this.inputRef }
           type="text"
-          onKeyUp={ this.onKeyUp }
+          onKeyUp={ this.props.onKeyUp }
         />
       </div>
     );
-  }
-
-  private onKeyUp = ( event: React.SyntheticEvent<HTMLInputElement> ) => {
-    if (event.nativeEvent instanceof KeyboardEvent) {
-      if (event.nativeEvent.keyCode === 13) {
-        this.createNewPoint();
-      }
-    }
-  }
-
-  private createNewPoint = (): void => {
-    if (this.inputRef.current && this.inputRef.current.value !== '') {
-      this.props.onAddPoint(this.inputRef.current.value);
-      this.inputRef.current.value = '';
-    }
   }
 }

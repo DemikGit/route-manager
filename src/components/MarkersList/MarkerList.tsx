@@ -28,18 +28,19 @@ export class MarkerList extends Component<IMarkerListProps, IMarkerListState> {
     const { routeMarkers, onPointDelete } = this.props;
 
     return routeMarkers.map(( marker: IMarker ) => {
-      const extendedOnDragEnter =
-        (event: React.SyntheticEvent<HTMLDivElement>) => {
+      const extendedOnDragEnter = () => {
           this.onDragEnter(marker.id);
-      }
+      };
 
       const extendedOnDragStart =
-        (event: React.SyntheticEvent<HTMLDivElement>) => {
-          if (event.nativeEvent instanceof DragEvent) {
-            event.nativeEvent.dataTransfer.setData('text/plain', 'data');
-          }
+        (event: React.DragEvent<HTMLDivElement>) => {
+          event.nativeEvent.dataTransfer.setData('text/plain', 'data');
           this.onDragStart(marker.id);
-      }
+      };
+
+      const extendedOnPointDelete = () => {
+        onPointDelete(marker.id)
+      };
 
       return (
         <div
@@ -50,7 +51,7 @@ export class MarkerList extends Component<IMarkerListProps, IMarkerListState> {
             onDragEnter={ extendedOnDragEnter }
             onDragStart={ extendedOnDragStart }
             id={ marker.id }
-            onPointDelete={ onPointDelete }
+            onPointDelete={ extendedOnPointDelete }
             name={ marker.name }
           />
         </div>

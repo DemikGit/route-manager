@@ -8,7 +8,7 @@ class App extends Component {
   public render() {
     return (
       <div className="app__container">
-        <RouteManager text="hello" />
+        <RouteManager />
       </div>
     )
   }

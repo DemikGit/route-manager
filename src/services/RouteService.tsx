@@ -1,22 +1,18 @@
 import * as React from 'react';
-import { GoogleMap, InfoWindow, Marker, Polyline } from 'react-google-maps';
+import { InfoWindow, Marker, Polyline } from 'react-google-maps';
 
 export interface IMarker {
   id: string,
   name: string,
   draggable: boolean,
   showInfoBox: boolean,
-  onDrag: (event: google.maps.MouseEvent, id: string) => void,
-  position: {
-    lat: number,
-    lng: number,
-  }
+  onDrag: (position: google.maps.LatLngLiteral, id: string) => void,
+  position: google.maps.LatLngLiteral,
 }
 
 export class RouteService {
   /* tslint:disable variable-name*/
   private _markers: IMarker[];
-  private _mapRef: React.RefObject<GoogleMap>;
   private _componentUpdate: () => void;
   /* tslint:enable variable-name */
 
@@ -35,10 +31,6 @@ export class RouteService {
     return this._markers;
   }
 
-  public set mapRef(mapRef: React.RefObject<GoogleMap>) {
-    this._mapRef = mapRef;
-  }
-
   constructor() {
     this._markers = [];
     this.polylineOptions = {
@@ -50,13 +42,10 @@ export class RouteService {
       draggable: true,
       id: '',
       name: '',
-      onDrag: (event: google.maps.MouseEvent, id: string) => {
-        this.onDrag(event, id);
+      onDrag: (position: google.maps.LatLngLiteral, id: string) => {
+        this.onDrag(position, id);
       },
-      position: {
-        lat: 0,
-        lng: 0,
-      },
+      position: { lat: 0, lng: 0 },
       showInfoBox: false,
     };
   }
@@ -83,16 +72,14 @@ export class RouteService {
     }
   }
 
-  public onDrag = (event: google.maps.MouseEvent, id: string): void => {
-    const { lat, lng } = event.latLng;
-
+  public onDrag = (position: google.maps.LatLngLiteral, id: string): void => {
     const markerTarget: IMarker | undefined =
       this._markers.find((point: IMarker) => {
         return point.id.includes(id);
     });
 
     if (markerTarget) {
-      markerTarget.position = { lat: lat() , lng: lng() };
+      markerTarget.position = position;
     }
 
     this._componentUpdate();
@@ -106,30 +93,7 @@ export class RouteService {
     this._componentUpdate();
   }
 
-  public onAddPoint = (name: string): void => {
-    if (this._mapRef.current) {
-
-      const {
-        lat: centerLat,
-        lng: centerLng,
-      } = this._mapRef.current.getCenter();
-
-      this._markers.push({
-        ...this.defaultPoint,
-        id: this.uuidV4(),
-        name,
-        position: { lat: centerLat(), lng: centerLng() },
-      });
-
-      this._componentUpdate();
-    }
-  }
-
-  public render = (): JSX.Element[] => {
-    return this.renderMarkers().concat(this.renderPolyline());
-  }
-
-  private onToggleInfoBox = (id: string): void => {
+  public onToggleInfoBox = (id: string): void => {
     const targetMarker: IMarker | undefined = this._markers.find(
       (marker: IMarker): boolean => {
         return marker.id === id;
@@ -143,13 +107,33 @@ export class RouteService {
     this._componentUpdate();
   }
 
+  public onAddPoint = (
+    name: string,
+    position: google.maps.LatLngLiteral
+  ): void => {
+    if (position && name) {
+      this._markers.push({
+        ...this.defaultPoint,
+        id: this.uuidV4(),
+        name,
+        position,
+      });
+    }
+
+    this._componentUpdate();
+  }
+
+  public render = (): JSX.Element[] => {
+    return this.renderMarkers().concat(this.renderPolyline());
+  }
+
   private renderMarkers = (): JSX.Element[] => {
     const markers: JSX.Element[] = [];
 
     this._markers.forEach((marker) => {
       const { onDrag, draggable, position, id } = marker;
       const extendedDrag = ( event: google.maps.MouseEvent) => {
-        onDrag(event, id);
+        onDrag(event.latLng.toJSON(), id);
       };
 
       const extendedToggleInfoBox = ( ) => {

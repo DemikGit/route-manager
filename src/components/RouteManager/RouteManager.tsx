@@ -8,9 +8,6 @@ import { RouteService } from '../../services/RouteService';
 import { MapPreview } from '../MapPreview/MapPreview';
 import { MarkerList } from '../MarkersList/MarkerList';
 
-export interface IRouteManagerProps {
-  text: string,
-}
 export interface IRouteManagerState {
   apiParams: {
     key: string,
@@ -20,7 +17,7 @@ export interface IRouteManagerState {
   routeService: RouteService,
 }
 
-export class RouteManager extends Component<IRouteManagerProps, IRouteManagerState> {
+export class RouteManager extends Component<{}, IRouteManagerState> {
   public state = {
 
     apiParams: {
@@ -28,7 +25,6 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
       libs: 'geometry,drawing,places',
       version: '3.exp',
     },
-
     routeService: new RouteService(),
   }
 
@@ -36,8 +32,13 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
 
   public componentDidMount() {
     const { routeService } = this.state;
-    routeService.mapRef = this.mapRef;
     routeService.updateComponent = () => this.forceUpdate();
+  }
+
+  public onKeyUp = ( event: React.KeyboardEvent<HTMLInputElement> ) => {
+    if (event.nativeEvent.key === 'Enter') {
+      this.createNewPoint(event.nativeEvent.target as HTMLInputElement);
+    }
   }
 
   public render() {
@@ -52,7 +53,7 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
         <div className="route-manager__controls">
           <BaseInput
             placeholder="Enter name for new routes point..."
-            onAddPoint={ routeService.onAddPoint }
+            onKeyUp={ this.onKeyUp }
           />
           <MarkerList
             routeMarkers={ routeService.markers }
@@ -80,5 +81,19 @@ export class RouteManager extends Component<IRouteManagerProps, IRouteManagerSta
         </div>
       </div>
     );
+  }
+
+  public createNewPoint = (element: HTMLInputElement): void => {
+    if (element && element.value && element.value !== '') {
+      this.addPoint(element.value);
+      element.value = '';
+    }
+  }
+
+  public addPoint = (name: string) => {
+    const { routeService } = this.state;
+    if (this.mapRef.current) {
+      routeService.onAddPoint(name, this.mapRef.current.getCenter().toJSON());
+    }
   }
 }
